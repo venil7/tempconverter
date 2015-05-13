@@ -32,19 +32,9 @@ namespace TempConverter.App.ViewModel
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
-            ////if (ViewModelBase.IsInDesignModeStatic)
-            ////{
-            ////    // Create design time view services and models
-            ////    SimpleIoc.Default.Register<IDataService, DesignDataService>();
-            ////}
-            ////else
-            ////{
-            ////    // Create run time view services and models
-            ////    SimpleIoc.Default.Register<IDataService, DataService>();
-            ////}
-
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<ITempConverter, TempConverter.Services.TempConverter>();
+            SimpleIoc.Default.Register<ITempStorage, TempConverter.Services.TempStorage>();
         }
 
         public MainViewModel Main
@@ -53,11 +43,6 @@ namespace TempConverter.App.ViewModel
             {
                 return ServiceLocator.Current.GetInstance<MainViewModel>();
             }
-        }
-        
-        public static void Cleanup()
-        {
-            // TODO Clear the ViewModels
         }
     }
 }

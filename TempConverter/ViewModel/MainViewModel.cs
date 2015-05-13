@@ -1,4 +1,5 @@
 using GalaSoft.MvvmLight;
+using System.Collections.Generic;
 using TempConverter.Services;
 
 namespace TempConverter.App.ViewModel
@@ -18,16 +19,19 @@ namespace TempConverter.App.ViewModel
     public class MainViewModel : ViewModelBase
     {
         private readonly ITempConverter _converter;
+        private readonly ITempStorage _storage;
+
         private double? _celsius;
         private double? _farenheit;
 
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
-        public MainViewModel(ITempConverter converter)
+        public MainViewModel(ITempConverter converter, ITempStorage storage)
         {
             this._converter = converter;
-            _celsius = 0;
+            this._storage = storage;
+            _celsius = 36.6; //body temp
         }
 
         public double FarenheitValue 
@@ -59,6 +63,15 @@ namespace TempConverter.App.ViewModel
                 _celsius = value;
                 _farenheit = null;
                 this.RaisePropertyChanged("FarenheitValue");
+            }
+        }
+
+        public OxyPlot.PlotModel PlotModel
+        {
+            get
+            {
+                var model = new OxyPlot.PlotModel {Title = "temp"};
+                return model;
             }
         }
         

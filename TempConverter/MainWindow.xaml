@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TempConverter"
         xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:oxy="http://oxyplot.org/wpf"
         mc:Ignorable="d"
         Title="Temperature Converter" Height="400" Width="315" ResizeMode="NoResize"
         DataContext="{Binding Main, Source={StaticResource Locator}}">
@@ -41,7 +42,8 @@
 
         <TextBlock Text="Celsius" Grid.Row="0" Grid.Column="0" FontSize="16"/>
         <TextBlock Text="Farenheit" Grid.Row="0" Grid.Column="1" FontSize="16"/>
+
+        <oxy:PlotView Model="{Binding Path=PlotModel}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" />
         
-        <Ellipse Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Fill="Aqua" />
     </Grid>
 </Window>

@@ -42,8 +42,11 @@
   <ItemGroup>
     <Compile Include="ConversionType.cs" />
     <Compile Include="ITempConverter.cs" />
+    <Compile Include="ITempStorage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TempConverter.cs" />
+    <Compile Include="TempPair.cs" />
+    <Compile Include="TempStorage.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
