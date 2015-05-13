@@ -7,7 +7,9 @@ namespace TempConverter.Services
 {
     public interface ITempStorage
     {
-        void AddPair(TempPair pair);
+        void AddFarenheit(double value);
+
+        void AddCelsius(double value);
         
         IEnumerable<TempPair> GetPairs();
     }

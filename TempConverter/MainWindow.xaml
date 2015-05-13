@@ -7,14 +7,14 @@
         xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:oxy="http://oxyplot.org/wpf"
         mc:Ignorable="d"
-        Title="Temperature Converter" Height="400" Width="315" ResizeMode="NoResize"
+        Title="Temperature Converter" Height="450" Width="315" ResizeMode="NoResize"
         DataContext="{Binding Main, Source={StaticResource Locator}}">
     
     <Grid ShowGridLines="False">
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
-            <RowDefinition Height="200" />
-            <RowDefinition Height="200" />
+            <RowDefinition Height="170" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         
         <Grid.ColumnDefinitions>
@@ -24,26 +24,32 @@
 
         <toolkit:DoubleUpDown 
             Value="{Binding Path=CelsiusValue}" 
+            Background="#98FB98"
             FormatString="f2" 
-            Increment=".1" 
+            Increment="1" 
             Maximum="1000" 
-            Minimum="-100"  
+            Minimum="-200"  
             FontSize="36" 
             Grid.Row="1" Grid.Column="0"/>
 
         <toolkit:DoubleUpDown 
             Value="{Binding Path=FarenheitValue}" 
+            Background="#FFC0CB"
             FormatString="f2" 
-            Increment=".1" 
+            Increment="1" 
             Maximum="1000" 
-            Minimum="-100" 
+            Minimum="-200" 
             FontSize="36" 
             Grid.Row="1" Grid.Column="1"/>
 
         <TextBlock Text="Celsius" Grid.Row="0" Grid.Column="0" FontSize="16"/>
         <TextBlock Text="Farenheit" Grid.Row="0" Grid.Column="1" FontSize="16"/>
 
-        <oxy:PlotView Model="{Binding Path=PlotModel}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" />
+        <oxy:PlotView 
+            Model="{Binding Path=PlotModel}" 
+            Grid.Row="2" 
+            Grid.Column="0" 
+            Grid.ColumnSpan="2" />
         
     </Grid>
 </Window>
