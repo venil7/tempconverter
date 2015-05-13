@@ -35,10 +35,8 @@ namespace TempConverter.App.ViewModel
         {
             _converter = converter;
             _storage = storage;
-            //_celsius = 36.6; //body temp
 
-
-            // quick graph fill-up
+            // quick graph fill-up, for demo purposes only
             foreach(double i in Enumerable.Range(-40, 100)) {
                 _celsius = Math.Sin(i / 10.0) * 10.0;
                 _farenheit = _converter.Convert(_celsius.Value, ConversionType.CelsiusToFarenheit);
