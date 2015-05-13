@@ -5,6 +5,9 @@ using TempConverter.App.Extensions;
 using OxyPlot;
 using System;
 using System.Linq;
+using System.Windows.Input;
+using GalaSoft.MvvmLight.Command;
+using System.Globalization;
 
 namespace TempConverter.App.ViewModel
 {
@@ -24,6 +27,7 @@ namespace TempConverter.App.ViewModel
     {
         private readonly ITempConverter _converter;
         private readonly ITempStorage _storage;
+        ICommand _onCultureChangeCommand;
 
         private double? _celsius;
         private double? _farenheit;
@@ -88,6 +92,18 @@ namespace TempConverter.App.ViewModel
             get
             {
                 return _storage.GetPlotModel();
+            }
+        }
+
+        public ICommand ChangeCultureCommand
+        {
+            get
+            {
+                return _onCultureChangeCommand
+                    ?? (_onCultureChangeCommand = new RelayCommand<string>((culture) =>
+                {
+                    App.ChangeCulture(new CultureInfo(culture));
+                }));
             }
         }
         

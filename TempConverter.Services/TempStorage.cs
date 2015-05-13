@@ -28,16 +28,8 @@ namespace TempConverter.Services
 
         public IEnumerable<TempPair> GetPairs()
         {
-            var farenheitEnumerator = _farenheit.GetEnumerator();
-            var celsiusEnumerator = _celsius.GetEnumerator();
-            while (farenheitEnumerator.MoveNext() && celsiusEnumerator.MoveNext())
-            {
-                yield return new TempPair
-                {
-                    Celsius = celsiusEnumerator.Current,
-                    Farenheit = farenheitEnumerator.Current
-                };
-            }
+            return _farenheit
+                .Zip(_celsius, (f, c) => new TempPair() { Celsius = c, Farenheit = f });
         }
     }
 }

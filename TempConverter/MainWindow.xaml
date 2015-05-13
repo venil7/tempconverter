@@ -6,17 +6,21 @@
         xmlns:local="clr-namespace:TempConverter"
         xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:oxy="http://oxyplot.org/wpf"
+        xmlns:resx="clr-namespace:TempConverter.App.Properties"
         mc:Ignorable="d"
-        Title="Temperature Converter" 
+        
+        Title="{x:Static resx:Resources.Title_label}"
         Height="450" 
         Width="315" 
-        DataContext="{Binding Main, Source={StaticResource Locator}}">
+        DataContext="{Binding Main, Source={StaticResource Locator}}"
+        x:Uid="Window_1">
     
     <Grid ShowGridLines="False">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
             <RowDefinition Height="4*" />
             <RowDefinition Height="5*" />
+            <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         
         <Grid.ColumnDefinitions>
@@ -44,14 +48,23 @@
             FontSize="36" 
             Grid.Row="1" Grid.Column="1"/>
 
-        <TextBlock Text="Celsius" Grid.Row="0" Grid.Column="0" FontSize="16"/>
-        <TextBlock Text="Farenheit" Grid.Row="0" Grid.Column="1" FontSize="16"/>
+        <TextBlock 
+            Text="{x:Static resx:Resources.Celsius_label}"
+            Grid.Row="0" Grid.Column="0" FontSize="16"/>
+        <TextBlock 
+            Text="{x:Static resx:Resources.Farenheit_label}"
+            Grid.Row="0" Grid.Column="1" FontSize="16"/>
 
         <oxy:PlotView 
             Model="{Binding Path=PlotModel}" 
             Grid.Row="2" 
             Grid.Column="0" 
             Grid.ColumnSpan="2" />
-        
+
+        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
+            <Button Width="60" Content="English" Command="{Binding Path=ChangeCultureCommand}" CommandParameter="en-GB"/>
+            <Button Width="60" Content="中国" Command="{Binding Path=ChangeCultureCommand}" CommandParameter="zh-CN"/>
+            <Button Width="60" Content="Русский" Command="{Binding Path=ChangeCultureCommand}" CommandParameter="ru-RU"/>
+        </StackPanel>
     </Grid>
 </Window>
