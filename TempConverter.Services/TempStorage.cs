@@ -18,12 +18,20 @@ namespace TempConverter.Services
 
         public void AddFarenheit(double value)
         {
-            _farenheit.Add(value);
+            var any = _farenheit.Any();
+            if (!any || (any && _farenheit.Last() != value))
+            {
+                _farenheit.Add(value);
+            }
         }
 
         public void AddCelsius(double value)
         {
-            _celsius.Add(value);
+            var any = _celsius.Any();
+            if (!any || (any && _celsius.Last() != value))
+            {
+                _celsius.Add(value);
+            }
         }
 
         public IEnumerable<TempPair> GetPairs()
